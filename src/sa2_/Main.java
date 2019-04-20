@@ -6,6 +6,7 @@
 package sa2_;
 import com.app.Data;
 import com.app.ProductFactory;
+import com.app.ProductMaker;
 import com.observer.Order;
 import com.observer.Product;
 import java.util.Scanner;
@@ -17,35 +18,44 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        String key = null;
+        do{
+            
+            System.out.println("***** Welcome to POS *****\n");
+            System.out.println("***** Please Chose one *****\n");
+            System.out.println(" 1- SEARCH \n 2- MENU \n 3- ORDER\n 3+ - Special Order \n 4- PRODUCTS INFO \n \n 0- FOR EXIT");
 
-        System.out.println("***** Welcome to POS *****\n");
-        System.out.println("***** Please Chose one *****\n");
-        System.out.println(" 1- SEARCH \n 2- MENU \n 3- ORDER \n 4- PRODUCTS INFO \n");
+            Scanner in = new Scanner(System.in);
+            key = in.nextLine();
 
-        Scanner in = new Scanner(System.in);
-        String key = in.nextLine();
-
-        switch (key) {
-            case "1":
-                // ahmed khaled task
-                System.out.println("SEARCH By ID"); // search for products form stock
-                search();
+            switch (key) {
+                case "1":
+                    // ahmed khaled task
+                    System.out.println("SEARCH By ID"); // search for products form stock
+                    search();
+                    break;
+                case "2":
+                    System.out.println("MENU"); /// Present all from stock
+                    break;
+                case "3":
+                    System.out.println("ORDER"); // Make order -> invoice
+                    MakeOrderTransaction();
+                    break;
+                case "3+":
+                System.out.println("Special Order"); // Make special order -> invoice
+                MakeSpecialOrder();
                 break;
-            case "2":
-                System.out.println("MENU"); /// Present all from stock
+                case "4":
+                    System.out.println("Product Info:");
+                    showProductsInfo();
+                    break;
+                case "0":
+                    System.exit(0);
                 break;
-            case "3":
-                System.out.println("ORDER"); // Make order -> invoice
-                MakeOrderTransaction();
-                break;
-            case "4":
-                System.out.println("Product Info:");
-                showProductsInfo();
-                break;
-            default:
-                System.exit(0);
-                break;
-        }
+                default:
+                    break;
+            }
+        }while(true);
 
     }
 
@@ -112,7 +122,16 @@ public class Main {
         }
 
     }
-
+    
+    static public void MakeSpecialOrder()
+    {
+        ProductMaker productMaker = new ProductMaker();
+        
+        productMaker.orderLaptop();
+        productMaker.orderMobile();
+        productMaker.orderAccessory();
+    }
+    
     static public void showProductsInfo(){
         System.out.println("Please Choose One Option:");
         System.out.println(" 1- Mobiles \n 2- Laptops \n 3- Accessories \n");
@@ -142,5 +161,4 @@ public class Main {
                         staffObject.getCurrentObjectQuantity()+ "."
         );
     }
-
 }
