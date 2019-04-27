@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package sa2_;
+import com.app.Composite;
 import com.app.Data;
+import com.app.Employee;
 import com.app.ProductFactory;
 import com.app.ProductMaker;
 import com.observer.Order;
@@ -23,7 +25,7 @@ public class Main {
             
             System.out.println("***** Welcome to POS *****\n");
             System.out.println("***** Please Chose one *****\n");
-            System.out.println(" 1- SEARCH \n 2- MENU \n 3- ORDER\n 3+ - Special Order \n 4- PRODUCTS INFO \n \n 0- FOR EXIT");
+            System.out.println(" 1- SEARCH \n 2- MENU \n 3- ORDER\n 3+ - Special Order \n 4- PRODUCTS INFO \n 5- ADD SYSTEM USERS Hierarchy(Composite)  \n 6- Public Chat(Mediator) \n \n 0- FOR EXIT");
 
             Scanner in = new Scanner(System.in);
             key = in.nextLine();
@@ -48,6 +50,17 @@ public class Main {
                 case "4":
                     System.out.println("Product Info:");
                     showProductsInfo();
+                    break;
+                case "5":
+                    System.out.println("System Users Hierarchy:");
+                    Composite employeeHierarchy = new Composite();
+                    break;
+                case "6":
+                    System.out.println("Public Chat:");
+                    Employee sherif = new Employee("Sherif" , 1000);
+                    Employee eng = new Employee("Eng" , 1000);
+                    sherif.sendMessage("Hi, eng!");
+                    eng.sendMessage("Hello, sherif!");
                     break;
                 case "0":
                     System.exit(0);
